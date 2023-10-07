@@ -18,7 +18,7 @@ def cache_image(url):
         os.rename("../img_stable_api/img2", "../img_stable_api/img1")
         urlretrieve(url, "../img_stable_api/img2")
 
-def get_api_image(image, prompt = "", seed = None):
+def get_api_image(image, prompt = "A fantasy setting, trending on artstation", seed = None):
     # Generate an image and assign it to the output variable
     if seed is None:
         url = replicate.run(
