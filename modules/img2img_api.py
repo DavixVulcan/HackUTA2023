@@ -1,4 +1,4 @@
-#import replicate
+import replicate
 import os
 from urllib.request import urlretrieve
 
