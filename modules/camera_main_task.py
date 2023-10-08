@@ -1,1 +1,0 @@
-# Main function of the ArduCam Hawkeye
