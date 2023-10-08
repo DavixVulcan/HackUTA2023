@@ -6,9 +6,9 @@ urls = ["https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/
         "https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/MainPic.png?authuser=1"]
 activ_url = 1
 
-setInterval(() => {
-    socket.send("I need urls")
-}, 1000);
+// setInterval(() => {
+//     socket.send("I need urls")
+// }, 1000);
 
 socket.addEventListener('message', ev => {
     console.log("recieved:" + ev.data)
@@ -31,6 +31,7 @@ function clear_div(id){
 }
 
 function change_image(direct){
+    socket.send("I need urls")
     if (direct == "right"){
         console.log("right")
         // document.getElementById(activ_url+"th").style.animation = "right .5s"
