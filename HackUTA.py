@@ -6,6 +6,8 @@ import json
 
 #Call module using modulename.modulefunction()
 # test.initial_test()
+urlsy= []
+
 whiler = True
 while(whiler):
     camera_main_task.take_picture("img_camera_out/MainPic.png")
@@ -24,4 +26,5 @@ while(whiler):
         #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
         #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
         #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
+        urlsy.append(output_image_url_1)
         qr_generator.create_qr(output_image_url_1, i)
