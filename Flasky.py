@@ -9,11 +9,21 @@ sock = Sock(app)
 def index():
     return render_template('index.html')
 
+arry = []
+
 @sock.route('/echo')
 def echo(ws):
     while True:
         data = ws.receive()
         print(data)
-        ws.send(data)
+        if(data.startswith("newImage")):
+            print("recieved url")
+            arry.append(data)
+            arry.pop(0)
+        else:
+            for y in arry:
+                ws.send(y)
+
+        # ws.send(data)
 
 app.run()

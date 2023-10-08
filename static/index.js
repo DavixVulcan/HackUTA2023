@@ -1,9 +1,14 @@
 const socket = new WebSocket('ws://' + location.host + '/echo');
 
+
 urls = ["https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/raul.png?authuser=1",
         "https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/MainPic.jpg?authuser=1",
         "https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/MainPic.png?authuser=1"]
 activ_url = 1
+
+setInterval(() => {
+    socket.send("I need urls")
+}, 1000);
 
 socket.addEventListener('message', ev => {
     console.log("recieved:" + ev.data)
