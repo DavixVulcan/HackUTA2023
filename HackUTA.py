@@ -5,11 +5,11 @@ import json
 import asyncio
 from websockets.sync.client import connect
 
-def send_url(num, url):
-    with connect("ws://127.0.0.1:5000/echo") as websocket:
-        websocket.send("newImage"+str(num)+": "+url)
-        message = websocket.recv()
-        print(f"Received: {message}")
+# def send_url(num, url):
+#     with connect("ws://127.0.0.1:5000/echo") as websocket:
+#         websocket.send("newImage"+str(num)+": "+url)
+#         message = websocket.recv()
+#         print(f"Received: {message}")
 
 #Call module using modulename.modulefunction()
 # test.initial_test()
@@ -36,5 +36,5 @@ while(whiler):
         #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
         urlsy.append(output_image_url_1)
         qr_generator.create_qr(output_image_url_1, i)
-        send_url(iris, output_image_url_1)
+        # send_url(iris, output_image_url_1)
         iris += 1
