@@ -1,0 +1,64 @@
+.holder {
+    overflow: hidden;
+    background-color: gainsboro;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 50% auto;
+}
+
+body {
+    overflow: hidden;
+}
+
+#right {
+    height: 100%;
+    width: 100%;
+    background-color: grey;
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+#left {
+    height: 100%;
+    width: 100%;
+    background-color: grey;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.imger {
+    grid-row: 1;
+    grid-column: 2;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes left {
+    from {
+
+    } to {
+        transform: translateX(200%);
+    }
+}
+
+#qr {
+    grid-row: 2;
+    grid-column: 2;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    text-align: center;
+}
+
+#qr image {
+    align-self: center;
+}
+/* @keyframes right {
+    from {
+
+    } to {
+        transform: translateX(-200%);
+    }
+} */
