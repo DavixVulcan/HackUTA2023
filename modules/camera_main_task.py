@@ -1,2 +1,4 @@
 # Main function of the ArduCam Hawkeye
-#take_picture()
+import os
+def take_picture(location):
+    os.system("libcamera-still -t 0 --viewfinder-width 2312 --viewfinder-height 1736 -o /"+location)
