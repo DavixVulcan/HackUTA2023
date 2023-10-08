@@ -29,9 +29,9 @@ def get_api_image(image, prompt = None, seed = None):
         url = replicate.run(
             "stability-ai/stable-diffusion-img2img:ddd4eb440853a42c055203289a3da0c8886b0b9492fe619b1c1dbd34be160ce7",
             input = {
-                "image": open(image, "rb"),
+                "image": image,
                 "prompt": prompt,
-                "prompt-strength": .9
+                "prompt-strength": .2
             }
         )[0]
     else:
@@ -41,7 +41,7 @@ def get_api_image(image, prompt = None, seed = None):
                 "image": image,
                 "prompt": prompt,
                 "seed": seed,
-                "prompt-strength": .9
+                "prompt-strength": .2
             }
         )[0]
 

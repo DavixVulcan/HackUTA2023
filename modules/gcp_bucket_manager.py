@@ -1,5 +1,6 @@
 from google.cloud import storage
 from modules import img2img_api
+from modules import qr_generator
 import json
 import os
 
@@ -13,7 +14,9 @@ bucket = storage_client.get_bucket('hackuta2023-image-bucket')
 
 # Get image url from file name
 def get_image_url(file_name):
-    return "http://hackuta2023-image-bucket.storage.googleapis.com/" + file_name
+    url = "http://storage.googleapis.com/hackuta2023-image-bucket/" + file_name +"?authuser=1"
+    qr_generator.create_qr(url)
+    return url
 
 # Take image path as input, return url of final image in bucket
 def process_image(file_name, prompt = None, seed = None):
