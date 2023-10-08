@@ -5,3 +5,4 @@ qrcode
 google-api-python-client
 google-cloud-storage
 streamlit==0.62.0
+Pillow
