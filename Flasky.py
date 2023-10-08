@@ -19,7 +19,7 @@ def echo(ws):
         if(data.startswith("newImage")):
             print("recieved url")
             arry.append(data)
-            if(arry.length > 3):
+            if(arry.length() > 3):
                 arry.pop(0)
         else:
             for y in arry:
