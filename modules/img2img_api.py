@@ -1,6 +1,7 @@
 
 #Importing os environment variables
 import os
+import datetime
 from dotenv import load_dotenv
 
 load_dotenv('.env')
@@ -12,19 +13,15 @@ import replicate
 from urllib.request import urlretrieve
 
 def cache_image(url):
-    if not os.path.exists( "img_stable_api/img0.png"):
-        urlretrieve(url,   "img_stable_api/img0.png")
-    elif not os.path.exists(  "img_stable_api/img1.png"):
-        urlretrieve(url,   "img_stable_api/img1.png")
-    elif not os.path.exists(  "img_stable_api/img2.png"):
-        urlretrieve(url,   "img_stable_api/img2.png")
-    else:
-        os.remove(  "img_stable_api/img0.png")
-        os.rename(  "img_stable_api/img1.png",   "img_stable_api/img0.png")
-        os.rename(  "img_stable_api/img2.png",   "img_stable_api/img1.png")
-        urlretrieve(url,   "img_stable_api/img2.png")
+    for filename in os.listdir("img_stable_api"):
+        if filename.endswith('.png'):
+            os.remove("img_stable_api/" + filename)
+    now = datetime.datetime.now()
+    date_string = now.strftime("%Y%m%d%H%M%S")
+    urlretrieve(url, "img_stable_api/output_image_" + date_string + ".png")
+    return "img_stable_api/output_image_" + date_string + ".png"
 
-def get_api_image(image, prompt = "fantasy setting", seed = None):
+def get_api_image(image, prompt = None, seed = None):
 
     # image = open(image, "rb")
     # Generate an image and assign it to the output variable
@@ -32,9 +29,9 @@ def get_api_image(image, prompt = "fantasy setting", seed = None):
         url = replicate.run(
             "stability-ai/stable-diffusion-img2img:ddd4eb440853a42c055203289a3da0c8886b0b9492fe619b1c1dbd34be160ce7",
             input = {
-                "image": open(image, "rb"),
+                "image": image,
                 "prompt": prompt,
-                "prompt-strength": .9
+                "prompt-strength": .2
             }
         )[0]
     else:
@@ -44,13 +41,12 @@ def get_api_image(image, prompt = "fantasy setting", seed = None):
                 "image": image,
                 "prompt": prompt,
                 "seed": seed,
-                "prompt-strength": .9
+                "prompt-strength": .2
             }
         )[0]
 
     # Check for an API error [TODO]
 
 
-    # Download the image from the url to the img_stable_api folder
-    # cache_image(url)
-    cache_image(url)
+    # Download the image from the url to the img_stable_api folder and return the file name
+    return cache_image(url)
