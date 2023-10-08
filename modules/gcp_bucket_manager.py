@@ -1,6 +1,5 @@
 from google.cloud import storage
 from modules import img2img_api
-from modules import qr_generator
 import json
 import os
 
@@ -15,23 +14,27 @@ bucket = storage_client.get_bucket('hackuta2023-image-bucket')
 # Get image url from file name
 def get_image_url(file_name):
     url = "http://storage.googleapis.com/hackuta2023-image-bucket/" + file_name +"?authuser=1"
-    qr_generator.create_qr(url)
     return url
 
-# Take image path as input, return url of final image in bucket
-def process_image(file_name, prompt = None, seed = None):
+# Upload image to cloud bucket, return image url
+def push_image(file_name):
     # Upload first image to bucket
     file_path = os.path.join(os.getcwd(), file_name)
     blob = bucket.blob(file_name)
     blob.upload_from_filename(file_path)
 
-    # Pass image url to img2img and cache result
-    output_file_name = img2img_api.get_api_image(get_image_url(file_name), prompt, seed)
+    # Pass image url to img2img and return output file name
+    return get_image_url(file_name)
+
+# Take image path url and AI params as input, return url of final image in bucket
+def process_image(img_url, prompt = None, seed = None):
+    # Process image and return output file name
+    file_name = img2img_api.get_api_image(img_url, prompt, seed)
 
     # Upload result image to bucket
-    output_file_path = os.path.join(os.getcwd(), output_file_name)
-    blob = bucket.blob(output_file_name)
-    blob.upload_from_filename(output_file_path)
+    file_path = os.path.join(os.getcwd(), file_name)
+    blob = bucket.blob(file_name)
+    blob.upload_from_filename(file_path)
 
     # Return result image url
-    return get_image_url(output_file_name)
+    return get_image_url(file_name)

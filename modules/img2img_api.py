@@ -15,7 +15,7 @@ from urllib.request import urlretrieve
 def cache_image(url):
     for filename in os.listdir("img_stable_api"):
         if filename.endswith('.png'):
-            os.remove(filename)
+            os.remove("img_stable_api/" + filename)
     now = datetime.datetime.now()
     date_string = now.strftime("%Y%m%d%H%M%S")
     urlretrieve(url, "img_stable_api/output_image_" + date_string + ".png")
