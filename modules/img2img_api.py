@@ -26,23 +26,25 @@ def cache_image(url):
 
 def get_api_image(image, prompt = "fantasy setting", seed = None):
 
-    image = open(image, "rb")
+    # image = open(image, "rb")
     # Generate an image and assign it to the output variable
     if seed is None:
         url = replicate.run(
-            "stability-ai/stable-diffusion-img2img:15a3689ee13b0d2616e98820eca31d4c3abcd36672df6afce5cb6feb1d66087d",
+            "stability-ai/stable-diffusion-img2img:ddd4eb440853a42c055203289a3da0c8886b0b9492fe619b1c1dbd34be160ce7",
             input = {
-                "image": image,
-                "prompt": prompt
+                "image": open(image, "rb"),
+                "prompt": prompt,
+                "prompt-strength": .9
             }
         )[0]
     else:
         url = replicate.run(
-            "stability-ai/stable-diffusion-img2img:15a3689ee13b0d2616e98820eca31d4c3abcd36672df6afce5cb6feb1d66087d",
+            "stability-ai/stable-diffusion-img2img:ddd4eb440853a42c055203289a3da0c8886b0b9492fe619b1c1dbd34be160ce7",
             input = {
                 "image": image,
                 "prompt": prompt,
-                "seed": seed
+                "seed": seed,
+                "prompt-strength": .9
             }
         )[0]
 
