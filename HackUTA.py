@@ -11,6 +11,7 @@ import json
 camera_main_task.take_picture("img_camera_out/MainPic.png")
 camera_image_url = gcp_bucket_manager.push_image("img_camera_out/MainPic.png")
 base_prompt = img2text_api.get_prompt(camera_image_url)
+base_prompt = base_prompt.strip()
 
 
 f = open("prompt_appends.json")
