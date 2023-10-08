@@ -18,6 +18,7 @@ base_prompt = base_prompt.strip()
 f = open("prompt_appends.json")
 array_urls = json.load(f)
 for i, y in array_urls.items():
+    print(camera_image_url)
     print(y)
     output_image_url_1 = gcp_bucket_manager.process_image(camera_image_url, base_prompt + ", " + y)
     #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
