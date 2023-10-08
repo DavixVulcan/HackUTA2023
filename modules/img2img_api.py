@@ -21,7 +21,7 @@ def cache_image(url):
     urlretrieve(url, "img_stable_api/output_image_" + date_string + ".png")
     return "img_stable_api/output_image_" + date_string + ".png"
 
-def get_api_image(image, prompt = "fantasy setting", seed = None):
+def get_api_image(image, prompt = None, seed = None):
 
     # image = open(image, "rb")
     # Generate an image and assign it to the output variable
