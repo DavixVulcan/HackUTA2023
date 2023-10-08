@@ -9,13 +9,13 @@ socket.addEventListener('message', ev => {
     console.log("recieved:" + ev.data)
     if (ev.data.startsWith("newImage1: ")){
         urls[0] = ev.data.slice(11);
-        document.getElementById(activ_url+"th").src = urls[0];
+        document.getElementById("0th").src = urls[0];
     } else if (ev.data.startsWith("newImage2: ")){
         urls[1] = ev.data.slice(11);
-        document.getElementById(activ_url+"th").src = urls[1];
+        document.getElementById("1th").src = urls[1];
     } else if (ev.data.startsWith("newImage3: ")){
         urls[2] = ev.data.slice(11);
-        document.getElementById(activ_url+"th").src = urls[2]
+        document.getElementById("2th").src = urls[2];
     } else {
         console.log("Nothing to report")
     }
