@@ -1,6 +1,7 @@
 
 #Importing os environment variables
 import os
+import datetime
 from dotenv import load_dotenv
 
 load_dotenv('.env')
@@ -12,17 +13,13 @@ import replicate
 from urllib.request import urlretrieve
 
 def cache_image(url):
-    if not os.path.exists( "img_stable_api/img0.png"):
-        urlretrieve(url,   "img_stable_api/img0.png")
-    elif not os.path.exists(  "img_stable_api/img1.png"):
-        urlretrieve(url,   "img_stable_api/img1.png")
-    elif not os.path.exists(  "img_stable_api/img2.png"):
-        urlretrieve(url,   "img_stable_api/img2.png")
-    else:
-        os.remove(  "img_stable_api/img0.png")
-        os.rename(  "img_stable_api/img1.png",   "img_stable_api/img0.png")
-        os.rename(  "img_stable_api/img2.png",   "img_stable_api/img1.png")
-        urlretrieve(url,   "img_stable_api/img2.png")
+    for filename in os.listdir("img_stable_api"):
+        if filename.endswith('.png'):
+            os.remove(filename)
+    now = datetime.datetime.now()
+    date_string = now.strftime("%Y%m%d%H%M%S")
+    urlretrieve(url, "img_stable_api/output_image_" + date_string + ".png")
+    return "img_stable_api/output_image_" + date_string + ".png"
 
 def get_api_image(image, prompt = "fantasy setting", seed = None):
 
@@ -51,6 +48,5 @@ def get_api_image(image, prompt = "fantasy setting", seed = None):
     # Check for an API error [TODO]
 
 
-    # Download the image from the url to the img_stable_api folder
-    # cache_image(url)
-    cache_image(url)
+    # Download the image from the url to the img_stable_api folder and return the file name
+    return cache_image(url)

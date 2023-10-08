@@ -3,3 +3,5 @@ replicate
 python-dotenv
 qrcode
 streamlit
+google-api-python-client
+google-cloud-storage
