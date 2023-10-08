@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HackUTAFrontend</title>
+        <link rel="stylesheet" href="{{url_for('static', filename = 'index.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+        <script type = "text/javascript"
+            src = "{{url_for('static', filename = 'index.js')}}">
+        </script>
+        <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+        <!-- <script src="index.js"></script> -->
+    </head>
+    <body>
+        <div class="holder">
+            <button id="left" onclick="change_image('left')"></button>
+            <img class="imger" id="0th" src="https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/raul.png?authuser=1" style="display: none">
+            <img class="imger" id="1th" src="https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/MainPic.jpg?authuser=1">
+            <img class="imger" id="2th" src="https://storage.googleapis.com/hackuta2023-image-bucket/img_camera_out/MainPic.png?authuser=1" style="display: none">
+            <div id="qr"></div>
+            <button id="right" onclick="change_image('right')"></button>
+        </div>
+    </body>
+</html>
