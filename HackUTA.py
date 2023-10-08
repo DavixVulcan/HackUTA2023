@@ -36,5 +36,5 @@ while(whiler):
         #img2img_api.get_api_image("imgurl1", "Spider-Man hanging from the side of the frame")
         urlsy.append(output_image_url_1)
         qr_generator.create_qr(output_image_url_1, i)
-        send_url(iris, i)
+        send_url(iris, output_image_url_1)
         iris += 1
