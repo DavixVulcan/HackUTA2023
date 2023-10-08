@@ -8,6 +8,7 @@ from modules import test, img2img_api, qr_generator, gcp_bucket_manager
 
 whiler = True
 # while(whiler):
+# while(whiler):
     #take_picture("img_camera_out/MainPic.png")
 camera_image_url = gcp_bucket_manager.push_image("img_camera_out/raul.png")
 output_image_url_1 = gcp_bucket_manager.process_image(camera_image_url, "Student in a classroom, realistic, high definition")
