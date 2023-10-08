@@ -7,3 +7,4 @@ google-cloud-storage
 streamlit==0.62.0
 flask
 flask_sock
+websockets
